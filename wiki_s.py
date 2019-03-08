@@ -37,12 +37,33 @@ class Deser:
 		
 		data = json['query']["pages"]
 		data = data[list(data.keys())[0]]["extract"]
-		print('-=-', data)
 		return data
 
 
 	@classmethod
 	async def get_html(cls, json):
-		pass
+		data = json["parse"]["text"]["*"]
+		return data
+
+	@classmethod
+	async def get_urls(cls, json):
+		data = json["query"].get("pages")
+		if not data:
+			raise PageNotFound("Unknown Page or error when getting page URLs")
+		data = list(data.items())[0][1]
+		pages = [data["fullurl"], data["editurl"]]
+		return pages
+
+
+	@classmethod
+	async def get_media(cls, json):
+		# print(json)
+		pages = json["query"]["pages"]
+		
+		images = list(pages.values())[0].get("images")
+		
+		if not images:
+			return []
+		return images
 
 

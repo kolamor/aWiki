@@ -70,7 +70,7 @@ class ParsePage(BaseKw):
 		self.action = kwargs['action'] if 'action' in kwargs else 'parse'
 
 class OpenSearch(BaseKw):
-	"""docstring for ClassName"""
+	"""docstring for """
 
 	def __init__(self, search, *args, **kwargs):
 
@@ -98,9 +98,12 @@ class UrlSearch(BaseKw):
 class MediaSearch(BaseKw):
 	'''  '''
 	def __init__(self, titles, *args, **kwargs):
+		super().__init__(*args, **kwargs)
 		self.titles = str(titles)
 		self.action = kwargs['action'] if 'action' in kwargs else 'query'
 		self.prop = kwargs['prop'] if 'prop' in kwargs else 'images'
+
+
 
 		
 class QueryDesigner():
